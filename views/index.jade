@@ -1,0 +1,27 @@
+extends layout
+
+block content
+	h1 Hello Cats!
+
+	//- When showform is greater than 5 it is false and goes to else
+	if showForm 
+		form(action="/addVideo", method="post")
+			input(type="text", placeholder="Name", name="name")
+			input(type="text", placeholder="Video URL", name="url")
+			input(type="text", placeholder="Title", name="title")
+			input(type="text", placeholder="Description", name="Description")
+			input(type="submit")
+	else
+		h3 TOO MANY CATS!!!
+	ul
+		for video in allVideos
+			li Owner: #{video.name}
+			li Title: #{video.title}
+			iframe(width="560" height="315" src=video.url frameborder="0" allowfullscreen)
+			li Description: #{video.description}
+			a(href = "#{vote}") vote
+
+
+
+
+
