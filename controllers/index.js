@@ -14,8 +14,9 @@ var indexController = {
 	// route for viewing a single videos
 	view: function(req, res){
 		var currentVideo = video.findVideo(req.params.videoName);
-		res.render('view, currentVideo');
+		res.render('view', currentVideo);
+	
 	}
 };
-
+ 
 module.exports = indexController;

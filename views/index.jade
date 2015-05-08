@@ -15,11 +15,13 @@ block content
 		h3 TOO MANY CATS!!!
 	ul
 		for video in allVideos
-			li Owner: #{video.name}
+			li
+				a(href='/view/#{video.slug}')=video.name
 			li Title: #{video.title}
+			li Owner: #{video.name}
 			iframe(width="560" height="315" src=video.url frameborder="0" allowfullscreen)
 			li Description: #{video.description}
-			a(href = "#{vote}") vote
+			
 
 
 

@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 
 //require controllers
@@ -15,15 +16,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //view handlers from indexController
 app.get('/', indexController.index);
-app.get('view/videoName', indexController.view);
+app.get('view/:videoName', indexController.view);
 
 //data from apiController
 app.post('/addVideo', apiController.addVideo);
-
-// app.getElementsBy('/delete/:videoName', apiController.deleteVideo);
+app.getElementsBy('/delete/:videoName', apiController.deleteVideo);
 
 	
-
+//
 var server = app.listen(5432, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });

@@ -10,6 +10,7 @@ var Embed = function(url){
 //base class for video
 var Video = function (name, url, title, description){
 		this.name = name;
+		this.slug = this.name.toLowerCase().replace(/ /g, '-');
 		this.url = Embed(url);
 		this.title = title;
 		this.description = description;
@@ -19,15 +20,24 @@ var Video = function (name, url, title, description){
 var addVideo = function( name, url, title, description){
 	var newVideo = new Video(name, url, title, description);
 	allVideos.push(newVideo);	
-
-	
 };
 
-var clicks = 0;
-var vote = function(){
-	return clicks +=1;
+var deleteVideo = function(slug){
+	for(var i =0; i<allVideos.length; i++){
+		if(allVideos[i].slug === slug){
+			allVideos.splice(i, 1);
+			return;
+		}
+	}
 };
-console.log(vote);
+
+var findVideo = function(slug){
+	for(var i =0; i<allVideos.length; i++){
+		if(allVideos[i].slug === slug){
+			return allVideos[i];
+		}
+	}
+};
 
 //makes boolean showform = true if < 5
 var showForm = function(){
@@ -39,7 +49,8 @@ module.exports = {
 	Video: Video,
 	allVideos: allVideos,
 	addVideo: addVideo,
-	vote : vote
+	deleteVideo: deleteVideo,
+	findVideo: findVideo
 };
 
 // Prefill some videos 
